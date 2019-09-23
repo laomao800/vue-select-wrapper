@@ -1,0 +1,62 @@
+{
+  "name": "@laomao800/vue-select-wrapper",
+  "version": "0.1.0",
+  "description": "A basic Vue.js Component that can wrap anything as a dropdown type selector.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "vue",
+    "dropdown",
+    "select"
+  ],
+  "main": "dist/vue-select-wrapper.common.js",
+  "types": "types.d.ts",
+  "files": [
+    "dist",
+    "types.d.ts"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "release": "node scripts/release.js",
+    "release:gh-pages": "git subtree push --prefix=docs/.vuepress/dist origin gh-pages",
+    "lint": "cross-env NODE_ENV=production vue-cli-service lint",
+    "build:lib": "vue-cli-service build --target lib --name vue-select-wrapper src/index.js",
+    "docs:serve": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "author": "laomao800 <laomao800@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laomao800/vue-select-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/laomao800/vue-select-wrapper/issues"
+  },
+  "homepage": "https://github.com/laomao800/vue-select-wrapper",
+  "dependencies": {
+    "@laomao800/parse-size-with-unit": "^1.0.0",
+    "add": "^2.0.6",
+    "has-values": "^2.0.1",
+    "yarn": "^1.17.3"
+  },
+  "devDependencies": {
+    "@laomao800/vue-item-list-selector": "^1.1.0",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^5.2.1",
+    "eslint": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^5.2.3",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "prettier": "^1.18.2",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
+    "vuepress": "^1.1.0"
+  }
+}
