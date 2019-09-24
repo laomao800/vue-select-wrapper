@@ -1,8 +1,8 @@
 # vue-select-wrapper
 
-可将任意内容包装为下拉选择类型组件。
+A basic Vue.js Component that can wrap anything as a dropdown type selector.
 
-## 安装
+## Install
 
 ```bash
 # yarn
@@ -12,34 +12,34 @@ yarn add @laomao800/vue-select-wrapper
 npm install --save @laomao800/vue-select-wrapper
 ```
 
-## 演示文档
+## Documentation
 
 <https://laomao800.github.io/vue-select-wrapper/>
 
 ## Props
 
-| prop             | type          | default     | description                                                                             |
-| ---------------- | ------------- | ----------- | --------------------------------------------------------------------------------------- |
-| value/v-model    | any           | `undefined` | 绑定值                                                                                  |
-| multiple         | boolean       | `false`     | 是否使用多选模式                                                                        |
-| placeholder      | string        | `''`        | placeholder                                                                             |
-| append-to-body   | boolean       | `true`      | 下拉弹出元素是否插入于 `<body>` 内                                                      |
-| dropdown-width   | number/string | `undefined` | 下拉弹出元素宽度，若不设置则与触发元素相同宽度。                                        |
-| dropdown-z-index | number        | `1000`      | 下拉弹出元素的 z-index 值                                                               |
-| disabled         | boolean       | `false`     | 是否禁用                                                                                |
-| size             | string        | `''`        | 控件尺寸，可选值 `medium/small/mini`                                                    |
-| clearable        | boolean       | `false`     | 是否启用清空所有选项功能                                                                |
-| collapse-tags    | boolean       | `false`     | 多选模式时是否折叠已选选项，若传入数字可表示指定显示出来的选项数量                      |
-| popper-class     | string        | `''`        | 下拉弹出元素 class 名                                                                   |
-| loading          | boolean       | `false`     | 下拉元素是否显示为加载中状态                                                            |
-| loading-text     | string        | `'加载中'`  | 下拉元素加载状态时显示的文字                                                            |
-| close-on-select  | boolean       | -           | 选择选项后是否自动收起下拉，可显示传值更改。默认：单选模式 `true` ，多选模式 `false` 。 |
+| prop             | type          | default     | description                                                                                                                                  |
+| ---------------- | ------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| value/v-model    | any           | `undefined` | Binding value. Should be an array when `multiple:true`                                                                                       |
+| multiple         | boolean       | `false`     | whether use multiple-select                                                                                                                  |
+| placeholder      | string        | `''`        | placeholder                                                                                                                                  |
+| append-to-body   | boolean       | `true`      | Append the dropdown element to `<body>`                                                                                                      |
+| dropdown-width   | number/string | `undefined` | Width of the dropdown element. If not provided, the trigger element's width will be used.                                                    |
+| dropdown-z-index | number        | `1000`      | Dropdown element z-index                                                                                                                     |
+| disabled         | boolean       | `false`     | Disable the component                                                                                                                        |
+| size             | string        | `''`        | Component size. Could be `medium/small/mini`                                                                                                 |
+| clearable        | boolean       | `false`     | Whether select can be cleared                                                                                                                |
+| collapse-tags    | boolean       | `false`     | Whether to collapse the selected option when multiple-select mode, if the number is passed, it can indicate the number of options specified. |
+| popper-class     | string        | `''`        | Custom class name for the dropdown                                                                                                           |
+| loading          | boolean       | `false`     | Whether the dropdown is display the loading status                                                                                           |
+| loading-text     | string        | `'Loading'` | Text in the dropdown while loading                                                                                                           |
+| close-on-select  | boolean       | -           | Close a dropdown when an option is chosen. default: single mode `true` , multiple mode `false` .                                             |
 
 ## Slots
 
 ### value-template
 
-可用 `value-template` 已选数据的展示模板，单选与多选模式下都有效。
+Custom content of the chosen values. Works in both single-select and multi-select modes.
 
 ```vue
 <SelectWrapper v-model="selection">
@@ -51,18 +51,18 @@ npm install --save @laomao800/vue-select-wrapper
 
 ## Methods
 
-| Methods          | Description           |
-| ---------------- | --------------------- |
-| showDropdown()   | 展开下拉              |
-| hideDropdown()   | 收起下拉              |
-| toggleDropdown() | 切换下拉展开/收起状态 |
-| clearValue()     | 清空所有已选项        |
-| updatePopper()   | 手动更新下拉元素位置  |
+| Methods          | Description              |
+| ---------------- | ------------------------ |
+| showDropdown()   | Show the dropdown        |
+| hideDropdown()   | Hide the dropdown        |
+| toggleDropdown() | Toggle the dropdown      |
+| clearValue()     | Clear all value          |
+| updatePopper()   | Update dropdown position |
 
 ## Events
 
-| Event          | Description       | Parameters                    |
-| -------------- | ----------------- | ----------------------------- |
-| change         | 选项变化时        | (newVal)                      |
-| visible-change | 下拉框出现/隐藏时 | 出现则为 true，隐藏则为 false |
-| clear          | 点击清空时        | -                             |
+| Event          | Description                                  | Parameters                                  |
+| -------------- | -------------------------------------------- | ------------------------------------------- |
+| change         | Trigger on value change                      | (newVal)                                    |
+| visible-change | Trigger on dropdown toggle                   | (visible) `true` for show, `false` for hide |
+| clear          | Click the clear icon or execute clearValue() | -                                           |
