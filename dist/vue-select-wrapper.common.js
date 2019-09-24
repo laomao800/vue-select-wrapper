@@ -1,4 +1,4 @@
-/*! @laomao800/vue-select-wrapper v1.0.0 */
+/*! @laomao800/vue-select-wrapper v1.0.1 */
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -5595,7 +5595,7 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d39f7090-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/SelectWrapper.vue?vue&type=template&id=22ae4a9d&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d39f7090-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/SelectWrapper.vue?vue&type=template&id=364e04ee&
 var render = function () {
 var _obj;
 var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"click-outside",rawName:"v-click-outside",value:(_vm.hideDropdown),expression:"hideDropdown"}],class:( _obj = {
@@ -5606,7 +5606,7 @@ var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/SelectWrapper.vue?vue&type=template&id=22ae4a9d&
+// CONCATENATED MODULE: ./src/SelectWrapper.vue?vue&type=template&id=364e04ee&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js
 var is_array = __webpack_require__("a745");
@@ -6039,7 +6039,7 @@ var SelectWrappervue_type_script_lang_js_isEmpty = function isEmpty(val) {
     },
     placeholder: {
       type: String,
-      default: '请选择'
+      default: ''
     },
     dropdownWidth: {
       type: [Number, String]
@@ -6078,7 +6078,7 @@ var SelectWrappervue_type_script_lang_js_isEmpty = function isEmpty(val) {
     },
     loadingText: {
       type: String,
-      default: '加载中'
+      default: 'Loading...'
     },
     closeOnSelect: {}
   },
@@ -6163,9 +6163,9 @@ var SelectWrappervue_type_script_lang_js_isEmpty = function isEmpty(val) {
     var _this = this;
 
     if (this.appendToBody) {
-      document.body.appendChild(this.$refs.popupContainer); // 需要获取所有滚动父级，以确保多层滚动条场景下定位准确
-
+      document.body.appendChild(this.$refs.popupContainer);
       this.$nextTick().then(function () {
+        // All scrollable parents needs to trigger updatePopper() to update the dropdown position
         var loopGetScrollParent = function loopGetScrollParent(parentEle) {
           var parent = parentEle;
 
