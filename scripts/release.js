@@ -54,16 +54,13 @@ const release = async () => {
   if (yes) {
     await execa('npm', ['run', 'build:lib'], { stdio: 'inherit' })
     await execa('git', ['add', 'dist'], { stdio: 'inherit' })
-    await execa('git', ['commit', '-m', `build: build ${version}`], {
-      stdio: 'inherit'
-    })
     if (genDocs) {
       await execa('npm', ['run', 'docs:build'], { stdio: 'inherit' })
       await execa('git', ['add', 'docs/.vuepress/dist'], { stdio: 'inherit' })
-      await execa('git', ['commit', '-m', `build: docs ${version}`], {
-        stdio: 'inherit'
-      })
     }
+    await execa('git', ['commit', '-m', `build: build ${version}`], {
+      stdio: 'inherit'
+    })
     await execa(
       'npm',
       ['version', version, '-m', `build: release ${version}`],
