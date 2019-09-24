@@ -100,7 +100,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '请选择'
+      default: ''
     },
     dropdownWidth: {
       type: [Number, String]
@@ -139,7 +139,7 @@ export default {
     },
     loadingText: {
       type: String,
-      default: '加载中'
+      default: 'Loading...'
     },
     closeOnSelect: {}
   },
@@ -211,8 +211,8 @@ export default {
     if (this.appendToBody) {
       document.body.appendChild(this.$refs.popupContainer)
 
-      // 需要获取所有滚动父级，以确保多层滚动条场景下定位准确
       this.$nextTick().then(() => {
+        // All scrollable parents needs to trigger updatePopper() to update the dropdown position
         const loopGetScrollParent = parentEle => {
           let parent = parentEle
           if (
