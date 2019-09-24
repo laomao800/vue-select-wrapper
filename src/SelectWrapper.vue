@@ -197,6 +197,7 @@ export default {
 
   created() {
     if (this.multiple && !Array.isArray(this.value)) {
+      // eslint-disable-next-line no-console
       console.error(
         '[SelectWrapper error] Expected array with v-model/value in multiple mode, got ' +
           typeof this.value +
