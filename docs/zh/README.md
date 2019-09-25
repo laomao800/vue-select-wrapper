@@ -2,11 +2,11 @@
 sidebar: auto
 ---
 
+<!-- markdownlint-disable MD033 -->
+
 # Vue select wrapper
 
 可将任意内容包装为下拉选择类型组件。
-
-<!-- markdownlint-disable MD033 -->
 
 <client-only>
 

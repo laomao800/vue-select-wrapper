@@ -3,11 +3,12 @@
     v-model="selection"
     :multiple="true"
     placeholder="Select Items"
+    @visible-change="onVisibleChange"
   >
     <template slot="value-template" slot-scope="{ value }">
       {{ value.label }}
     </template>
-    <ItemListSelector v-model="selection" :data="listData" />
+    <ItemListSelector ref="itemListSelector" v-model="selection" :data="listData" />
   </SelectWrapper>
 </template>
 
@@ -25,7 +26,7 @@ export default {
     ItemListSelector
   },
 
-  data () {
+  data() {
     return {
       selection: [],
       listData: Array(6000)
@@ -35,6 +36,17 @@ export default {
           value: i
         }))
     }
+  },
+
+  methods: {
+    async onVisibleChange(visible) {
+      if (visible) {
+        await this.$nextTick()
+        this.$refs.itemListSelector.$el
+          .querySelector('.item-selector__searchbar input')
+          .focus()
+      }
+    },
   }
 }
 </script>

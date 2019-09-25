@@ -2,11 +2,11 @@
 sidebar: auto
 ---
 
+<!-- markdownlint-disable MD033 -->
+
 # Vue select wrapper
 
 A basic Vue.js Component that can wrap anything as a dropdown type selector.
-
-<!-- markdownlint-disable MD033 -->
 
 <client-only>
 

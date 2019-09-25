@@ -15,13 +15,10 @@
   </div>
 </template>
 
-<script>
-</script>
-
-<style>
+<style scoped>
 .inline-wrap > * {
   width: 160px;
-  margin-right: 20px;
+  margin-right: 10px;
   display: inline-block;
 }
 </style>
