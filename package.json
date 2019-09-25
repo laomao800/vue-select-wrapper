@@ -20,9 +20,7 @@
   ],
   "dependencies": {
     "@laomao800/parse-size-with-unit": "^1.0.0",
-    "add": "^2.0.6",
-    "has-values": "^2.0.1",
-    "yarn": "^1.17.3"
+    "has-values": "^2.0.1"
   },
   "devDependencies": {
     "@laomao800/vue-item-list-selector": "^1.1.0",
