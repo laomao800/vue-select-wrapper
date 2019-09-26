@@ -58,22 +58,23 @@ sidebar: auto
 
 ## Props
 
-| prop             | type          | default     | description                                                                             |
-| ---------------- | ------------- | ----------- | --------------------------------------------------------------------------------------- |
-| value/v-model    | any           | `undefined` | 绑定值                                                                                  |
-| multiple         | boolean       | `false`     | 是否使用多选模式                                                                        |
-| placeholder      | string        | `''`        | placeholder                                                                             |
-| append-to-body   | boolean       | `true`      | 下拉弹出元素是否插入于 `<body>` 内                                                      |
-| dropdown-width   | number/string | `undefined` | 下拉弹出元素宽度，若不设置则与触发元素相同宽度。                                        |
-| dropdown-z-index | number        | `1000`      | 下拉弹出元素的 z-index 值                                                               |
-| disabled         | boolean       | `false`     | 是否禁用                                                                                |
-| size             | string        | `''`        | 控件尺寸，可选值 `medium/small/mini`                                                    |
-| clearable        | boolean       | `false`     | 是否启用清空所有选项功能                                                                |
-| collapse-tags    | boolean       | `false`     | 多选模式时是否折叠已选选项，若传入数字可表示指定显示出来的选项数量                      |
-| popper-class     | string        | `''`        | 下拉弹出元素 class 名                                                                   |
-| loading          | boolean       | `false`     | 下拉元素是否显示为加载中状态                                                            |
-| loading-text     | string        | `'加载中'`  | 下拉元素加载状态时显示的文字                                                            |
-| close-on-select  | boolean       | -           | 选择选项后是否自动收起下拉，可显示传值更改。默认：单选模式 `true` ，多选模式 `false` 。 |
+| prop             | type          | default              | description                                                                             |
+| ---------------- | ------------- | -------------------- | --------------------------------------------------------------------------------------- |
+| value/v-model    | any           | `undefined`          | 绑定值                                                                                  |
+| multiple         | boolean       | `false`              | 是否使用多选模式                                                                        |
+| placeholder      | string        | `''`                 | placeholder                                                                             |
+| append-to-body   | boolean       | `true`               | 下拉弹出元素是否插入于 `<body>` 内                                                      |
+| dropdown-width   | number/string | `undefined`          | 下拉弹出元素宽度，若不设置则与触发元素相同宽度。                                        |
+| dropdown-z-index | number        | `1000`               | 下拉弹出元素的 z-index 值                                                               |
+| disabled         | boolean       | `false`              | 是否禁用                                                                                |
+| size             | string        | `''`                 | 控件尺寸，可选值 `medium/small/mini`                                                    |
+| clearable        | boolean       | `false`              | 是否启用清空所有选项功能                                                                |
+| limit            | number        | `Infinity`           | 限制显示的选项数量，必须大于 `0` 。其余选项会显示为 `limit-text` 所返回的内容。         |
+| limit-text       | function      | count => `+${count}` | 当选项超过限制时显示文本的处理方法，参数为剩余选项数量。                                |
+| popper-class     | string        | `''`                 | 下拉弹出元素 class 名                                                                   |
+| loading          | boolean       | `false`              | 下拉元素是否显示为加载中状态                                                            |
+| loading-text     | string        | `'加载中'`           | 下拉元素加载状态时显示的文字                                                            |
+| close-on-select  | boolean       | -                    | 选择选项后是否自动收起下拉，可显示传值更改。默认：单选模式 `true` ，多选模式 `false` 。 |
 
 ## Slots
 

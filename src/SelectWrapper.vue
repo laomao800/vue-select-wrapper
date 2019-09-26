@@ -30,10 +30,10 @@
               </span>
             </div>
             <div
-              v-if="collapseTags && value.length > showingValue.length"
-              class="sw__tag sw__tag-collapse"
+              v-if="limit && value.length > limit"
+              class="sw__tag sw__tag-limit"
             >
-              +{{ value.length - showingValue.length }}
+              {{ limitText(value.length - limit) }}
             </div>
           </div>
           <div v-else class="sw__single">
@@ -125,9 +125,13 @@ export default {
       type: Boolean,
       default: false
     },
-    collapseTags: {
-      type: [Number, Boolean],
-      default: false
+    limit: {
+      type: Number,
+      default: Infinity
+    },
+    limitText: {
+      type: Function,
+      default: (count) => `+${count}`
     },
     popperClass: {
       type: String,
@@ -164,8 +168,8 @@ export default {
       }
     },
     showingValue() {
-      if (this.collapseTags) {
-        return this.value.slice(0, +this.collapseTags)
+      if (this.limit > 0) {
+        return this.value.slice(0, this.limit)
       }
       return this.value
     },

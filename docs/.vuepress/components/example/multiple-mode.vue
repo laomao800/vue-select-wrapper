@@ -15,7 +15,7 @@
     <SelectWrapper
       v-model="selection2"
       :multiple="true"
-      :collapse-tags="2"
+      :limit="2"
       placeholder="Select multiple value"
     >
       <div class="option-wrap">

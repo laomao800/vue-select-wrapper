@@ -3,7 +3,7 @@
     <SelectWrapper
       v-model="selection1"
       :multiple="true"
-      :collapse-tags="2"
+      :limit="2"
       clearable
       placeholder="Select multiple value"
     >

@@ -28,8 +28,11 @@ declare class Props extends Vue {
   /** 是否启用清空所有选项功能 */
   clearable: boolean
 
-  /** 多选模式时是否折叠已选选项，若传入数字可表示指定显示出来的选项数量 */
-  collapseTags: boolean | number
+  /** 限制显示的选项数量，必须大于 `0` 。其余选项会显示为 `limit-text` 所返回的内容。 */
+  limit: number
+
+  /** 当选项超过限制时显示文本的处理方法，参数为剩余选项数量。 */
+  limitText: (count: number) => string
 
   /** 下拉弹出元素 class 名 */
   popperClass: string

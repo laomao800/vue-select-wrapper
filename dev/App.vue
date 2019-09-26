@@ -15,7 +15,8 @@
           v-model="selectionWithList"
           :multiple="true"
           :appendToBody="false"
-          :collapse-tags="2"
+          :limit="2"
+          :limit-text="(count) => `and ${count} more`"
           placeholder="Select Items"
         >
           <template slot="value-template" slot-scope="{ value }">{{
