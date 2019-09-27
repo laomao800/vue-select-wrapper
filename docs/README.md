@@ -62,23 +62,23 @@ e.g. [vue-item-list-selector](https://github.com/laomao800/vue-item-list-selecto
 
 ## Props
 
-| prop             | type          | default              | description                                                                                                             |
-| ---------------- | ------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| value/v-model    | any           | `undefined`          | Binding value. Should be an array when `multiple:true`                                                                  |
-| multiple         | boolean       | `false`              | whether use multiple-select                                                                                             |
-| placeholder      | string        | `''`                 | placeholder                                                                                                             |
-| append-to-body   | boolean       | `true`               | Append the dropdown element to `<body>`                                                                                 |
-| dropdown-width   | number/string | `undefined`          | Width of the dropdown element. If not provided, the trigger element's width will be used.                               |
-| dropdown-z-index | number        | `1000`               | Dropdown element z-index                                                                                                |
-| disabled         | boolean       | `false`              | Disable the component                                                                                                   |
-| size             | string        | `''`                 | Component size. Could be `medium/small/mini`                                                                            |
-| clearable        | boolean       | `false`              | Whether select can be cleared                                                                                           |
-| limit            | number        | `Infinity`           | Limit the number of selected options displayed, must be greater than `0`. The rest will be hidden within the limitText. |
-| limit-text       | function      | count => `+${count}` | Function that processes the message shown when selected elements pass the defined limit.                                |
-| popper-class     | string        | `''`                 | Custom class name for the dropdown                                                                                      |
-| loading          | boolean       | `false`              | Whether the dropdown is display the loading status                                                                      |
-| loading-text     | string        | `'Loading'`          | Text in the dropdown while loading                                                                                      |
-| close-on-select  | boolean       | -                    | Close a dropdown when an option is chosen. **Default: single mode `true` , multiple mode `false` .**                    |
+| prop             | type          | default                | description                                                                                                             |
+| ---------------- | ------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| value/v-model    | any           | `undefined`            | Binding value. Should be an array when `multiple:true`                                                                  |
+| multiple         | boolean       | `false`                | whether use multiple-select                                                                                             |
+| placeholder      | string        | `''`                   | placeholder                                                                                                             |
+| append-to-body   | boolean       | `true`                 | Append the dropdown element to `<body>`                                                                                 |
+| dropdown-width   | number/string | `undefined`            | Width of the dropdown element. If not provided, the trigger element's width will be used.                               |
+| dropdown-z-index | number        | `1000`                 | Dropdown element z-index                                                                                                |
+| disabled         | boolean       | `false`                | Disable the component                                                                                                   |
+| size             | string        | `''`                   | Component size. Could be `medium/small/mini`                                                                            |
+| clearable        | boolean       | `false`                | Whether select can be cleared                                                                                           |
+| limit            | number        | `Infinity`             | Limit the number of selected options displayed, must be greater than `0`. The rest will be hidden within the limitText. |
+| limit-text       | function      | count => \`+${count}\` | Function that processes the message shown when selected elements pass the defined limit.                                |
+| popper-class     | string        | `''`                   | Custom class name for the dropdown                                                                                      |
+| loading          | boolean       | `false`                | Whether the dropdown is display the loading status                                                                      |
+| loading-text     | string        | `'Loading'`            | Text in the dropdown while loading                                                                                      |
+| close-on-select  | boolean       | -                      | Close a dropdown when an option is chosen. **Default: single mode `true` , multiple mode `false` .**                    |
 
 ## Slots
 
