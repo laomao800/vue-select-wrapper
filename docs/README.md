@@ -4,7 +4,7 @@ sidebar: auto
 
 <!-- markdownlint-disable MD033 -->
 <style>
-.db__wrapper { margin-top: 16px; }
+.db__wrapper { margin-top: 16px !important; }
 </style>
 
 # Vue select wrapper

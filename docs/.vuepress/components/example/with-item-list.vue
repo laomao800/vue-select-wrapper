@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import ItemListSelector from '@laomao800/vue-item-list-selector'
-
 function _randomText(length = 20) {
   return [...Array(length)]
     .map(() => (~~(Math.random() * 36)).toString(36))
@@ -28,7 +26,7 @@ function _randomText(length = 20) {
 
 export default {
   components: {
-    ItemListSelector
+    ItemListSelector: () => import('@laomao800/vue-item-list-selector')
   },
 
   data() {
@@ -44,12 +42,13 @@ export default {
   },
 
   methods: {
-    async onVisibleChange(visible) {
+    onVisibleChange(visible) {
       if (visible) {
-        await this.$nextTick()
-        this.$refs.itemListSelector.$el
-          .querySelector('.item-selector__searchbar input')
-          .focus()
+        this.$nextTick().then(() => {
+          this.$refs.itemListSelector.$el
+            .querySelector('.item-selector__searchbar input')
+            .focus()
+        })
       }
     }
   }

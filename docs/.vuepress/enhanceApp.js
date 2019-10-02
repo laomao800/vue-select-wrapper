@@ -8,6 +8,7 @@ export default ({ Vue }) => {
 
   import('@laomao800/vue-demo-box')
     .then(module => {
+      const DemoBox = module.default
       Vue.use(DemoBox, {
         jsRes: [
           '//unpkg.com/vue/dist/vue.js',
