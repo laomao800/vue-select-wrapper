@@ -131,7 +131,7 @@ export default {
     },
     limitText: {
       type: Function,
-      default: (count) => `+${count}`
+      default: count => `+${count}`
     },
     popperClass: {
       type: String,
@@ -161,11 +161,13 @@ export default {
       return isEmpty(this.value)
     },
     popupComputedStyle() {
-      return {
-        width: parseSize(this.dropdownWidth),
-        zIndex: this.dropdownZIndex + 2,
-        ...this.popupStyle
-      }
+      return Object.assign(
+        {
+          width: parseSize(this.dropdownWidth),
+          zIndex: this.dropdownZIndex + 2
+        },
+        this.popupStyle
+      )
     },
     showingValue() {
       if (this.limit > 0) {
@@ -187,15 +189,16 @@ export default {
         this.visible = val
       }
     },
-    async value(val) {
+    value(val) {
       this.$emit('change', val)
-      await this.$nextTick()
-      if (this.appendToBody) {
-        this.updatePopper()
-      }
-      if (this.internalCloseOnSelect) {
-        this.hideDropdown()
-      }
+      this.$nextTick().then(() => {
+        if (this.appendToBody) {
+          this.updatePopper()
+        }
+        if (this.internalCloseOnSelect) {
+          this.hideDropdown()
+        }
+      })
     }
   },
 
@@ -252,10 +255,10 @@ export default {
   methods: {
     delValue(index) {
       if (Array.isArray(this.value)) {
-        const newValue = [
-          ...this.value.slice(0, index),
-          ...this.value.slice(index + 1, this.value.length)
-        ]
+        const newValue = [].concat(
+          this.value.slice(0, index),
+          this.value.slice(index + 1, this.value.length)
+        )
         this.$emit('value-change', newValue)
       }
     },
