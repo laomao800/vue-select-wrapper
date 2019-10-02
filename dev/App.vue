@@ -16,12 +16,12 @@
           :multiple="true"
           :appendToBody="false"
           :limit="2"
-          :limit-text="(count) => `and ${count} more`"
+          :limit-text="count => `and ${count} more`"
           placeholder="Select Items"
         >
-          <template slot="value-template" slot-scope="{ value }">{{
-            value.label
-          }}</template>
+          <template slot="value-template" slot-scope="{ value }">
+            {{ value.label }}
+          </template>
           <ItemListSelector v-model="selectionWithList" :data="listData" />
         </SelectWrapper>
       </div>
@@ -147,9 +147,9 @@
           :multiple="true"
           placeholder="Select months"
         >
-          <template slot="value-template" slot-scope="{ value }">{{
-            value.short
-          }}</template>
+          <template slot="value-template" slot-scope="{ value }">
+            {{ value.short }}
+          </template>
           <div style="padding:15px">
             <label
               v-for="month in months"

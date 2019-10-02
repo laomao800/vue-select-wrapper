@@ -1,18 +1,23 @@
 <template>
   <div class="inline-wrap">
-    <SelectWrapper
+    <select-wrapper
       v-model="selection1"
       :multiple="true"
       placeholder="Select multiple value"
     >
       <div class="option-wrap">
         <label v-for="option in options" :key="option">
-          <input v-model="selection1" name="multiple" type="checkbox" :value="option" />
+          <input
+            v-model="selection1"
+            name="multiple"
+            type="checkbox"
+            :value="option"
+          />
           {{ option }}
         </label>
       </div>
-    </SelectWrapper>
-    <SelectWrapper
+    </select-wrapper>
+    <select-wrapper
       v-model="selection2"
       :multiple="true"
       :limit="2"
@@ -20,11 +25,16 @@
     >
       <div class="option-wrap">
         <label v-for="option in options" :key="option">
-          <input v-model="selection2" name="multiple" type="checkbox" :value="option" />
+          <input
+            v-model="selection2"
+            name="multiple"
+            type="checkbox"
+            :value="option"
+          />
           {{ option }}
         </label>
       </div>
-    </SelectWrapper>
+    </select-wrapper>
   </div>
 </template>
 

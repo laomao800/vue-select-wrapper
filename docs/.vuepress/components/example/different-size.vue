@@ -1,17 +1,17 @@
 <template>
   <div class="inline-wrap">
-    <SelectWrapper placeholder="Default Size">
+    <select-wrapper placeholder="Default Size">
       <div style="padding:0.4em 1em;">default size</div>
-    </SelectWrapper>
-    <SelectWrapper placeholder="Medium Size" size="medium">
+    </select-wrapper>
+    <select-wrapper placeholder="Medium Size" size="medium">
       <div style="padding:0.4em 1em;">medium size</div>
-    </SelectWrapper>
-    <SelectWrapper placeholder="Small Size" size="small">
+    </select-wrapper>
+    <select-wrapper placeholder="Small Size" size="small">
       <div style="padding:0.4em 1em;">small size</div>
-    </SelectWrapper>
-    <SelectWrapper placeholder="Mini Size" size="mini">
+    </select-wrapper>
+    <select-wrapper placeholder="Mini Size" size="mini">
       <div style="padding:0.4em 1em;">mini size</div>
-    </SelectWrapper>
+    </select-wrapper>
   </div>
 </template>
 

@@ -1,15 +1,20 @@
 <template>
-  <SelectWrapper
+  <select-wrapper
     v-model="selection"
     :multiple="true"
     placeholder="Select Items"
+    style="width:320px;"
     @visible-change="onVisibleChange"
   >
     <template slot="value-template" slot-scope="{ value }">
       {{ value.label }}
     </template>
-    <ItemListSelector ref="itemListSelector" v-model="selection" :data="listData" />
-  </SelectWrapper>
+    <ItemListSelector
+      ref="itemListSelector"
+      v-model="selection"
+      :data="listData"
+    />
+  </select-wrapper>
 </template>
 
 <script>
@@ -46,7 +51,7 @@ export default {
           .querySelector('.item-selector__searchbar input')
           .focus()
       }
-    },
+    }
   }
 }
 </script>

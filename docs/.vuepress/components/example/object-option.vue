@@ -1,8 +1,9 @@
 <template>
-  <SelectWrapper
+  <select-wrapper
     v-model="selection"
     :multiple="true"
     placeholder="Select months"
+    style="width:320px;"
   >
     <template slot="value-template" slot-scope="{ value }">
       {{ value.short }}
@@ -21,7 +22,7 @@
         {{ month.label }}
       </label>
     </div>
-  </SelectWrapper>
+  </select-wrapper>
 </template>
 
 <script>

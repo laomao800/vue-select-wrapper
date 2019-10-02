@@ -1,8 +1,9 @@
 <template>
-  <SelectWrapper
+  <select-wrapper
     v-model="selection"
     :close-on-select="false"
     placeholder="Select single value"
+    style="width:320px;"
   >
     <div style="padding:15px">
       <label style="margin-right:10px">
@@ -22,7 +23,7 @@
         value4
       </label>
     </div>
-  </SelectWrapper>
+  </select-wrapper>
 </template>
 
 <script>

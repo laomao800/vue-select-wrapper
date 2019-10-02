@@ -791,6 +791,11 @@
   resolved "https://registry.npmjs.org/@laomao800/parse-size-with-unit/-/parse-size-with-unit-1.0.0.tgz#754f8eb50462b56afb3367df6a21502f08676e40"
   integrity sha512-WplWPFgHRRr1CguXGScD38DdkQIGGPxkHZt0FgE5BnJO+46ERh5ML1U3bcwQUnVWRs5bs1KVJUSQdMdepAHkkg==
 
+"@laomao800/vue-demo-box@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@laomao800/vue-demo-box/-/vue-demo-box-1.0.0.tgz#a1f9cf6485c618bf7367da33f3ba67a963cab6e5"
+  integrity sha512-GE5ei4vQQGzDaEq455jI26xJqTucv5Tr4awtv0RgnbjAm2V8HsYzZzQc0Ilgq12IQxPaMAmu4p9TXcUwDhq02g==
+
 "@laomao800/vue-item-list-selector@^1.1.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@laomao800/vue-item-list-selector/-/vue-item-list-selector-1.1.0.tgz#a05a9fdf5b7100c940481d47bd2fef783ee249f1"
