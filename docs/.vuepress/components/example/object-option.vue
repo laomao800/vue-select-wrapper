@@ -3,12 +3,12 @@
     v-model="selection"
     :multiple="true"
     placeholder="Select months"
-    style="width:320px;"
+    style="width:540px;"
   >
     <template slot="value-template" slot-scope="{ value }">
       {{ value.short }}
     </template>
-    <div style="padding:15px">
+    <div style="padding:15px 0 15px 15px;">
       <label
         v-for="month in months"
         :key="month.value"

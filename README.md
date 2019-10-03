@@ -2,6 +2,8 @@
 
 A basic Vue.js Component that can wrap anything as a dropdown type selector.
 
+![vue-select-wrapper preview](preview.png)
+
 ## Install
 
 ```bash
@@ -14,7 +16,7 @@ npm install --save @laomao800/vue-select-wrapper
 
 ## Documentation
 
-<https://laomao800.github.io/vue-select-wrapper/>
+[中文](https://laomao800.github.io/vue-select-wrapper/zh/) | [English](https://laomao800.github.io/vue-select-wrapper/)
 
 ## Props
 
