@@ -1,4 +1,4 @@
-import SelectWrapper from './SelectWrapper'
+import SelectWrapper from './SelectWrapper.vue'
 
 SelectWrapper.install = function(Vue) {
   Vue.component(SelectWrapper.name, SelectWrapper)

@@ -69,12 +69,13 @@
   </div>
 </template>
 
+<style lang="less" src="./style.less"></style>
+
 <script>
 import hasValue from 'has-values'
 import parseSize from '@laomao800/parse-size-with-unit'
 import clickOutside from './clickOutSide'
 import getScrollParents from './getScrollParents'
-import './style.less'
 
 const isEmpty = val => !hasValue(val)
 
