@@ -46,7 +46,7 @@ Custom content of the chosen values. Works in both single-select and multi-selec
 
 ```vue
 <SelectWrapper v-model="selection">
-  <template slot="value-template" slot-scope="{ value }">
+  <template #value-template="{ value }">
     {{ value.valueProperty }}
   </template>
 </SelectWrapper>

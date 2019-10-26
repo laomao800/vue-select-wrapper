@@ -1,10 +1,9 @@
-import resolve from 'rollup-plugin-node-resolve'
+import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import vue from 'rollup-plugin-vue'
 import buble from 'rollup-plugin-buble'
 import { uglify } from 'rollup-plugin-uglify'
 import less from 'rollup-plugin-less'
-import url from 'postcss-url'
 import autoprefixer from 'autoprefixer'
 
 const version = process.env.VERSION || require('./package.json').version
@@ -17,13 +16,12 @@ const banner =
 const commonConfig = {
   input: 'src/index.js',
   plugins: [
-    resolve(),
+    nodeResolve(),
     commonjs(),
     less(),
     vue({
       style: {
-        trim: false,
-        postcssPlugins: [url({ url: 'inline' }), autoprefixer()]
+        postcssPlugins: [autoprefixer()]
       }
     }),
     buble({
