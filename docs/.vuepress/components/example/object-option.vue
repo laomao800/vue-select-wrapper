@@ -1,13 +1,6 @@
 <template>
-  <select-wrapper
-    v-model="selection"
-    :multiple="true"
-    placeholder="Select months"
-    style="width:540px;"
-  >
-    <template slot="value-template" slot-scope="{ value }">
-      {{ value.short }}
-    </template>
+  <select-wrapper v-model="value" :multiple="true" placeholder="Select months" style="width:540px;">
+    <template slot="value-template" slot-scope="{ value }">{{ value.short }}</template>
     <div style="padding:15px 0 15px 15px;">
       <label
         v-for="month in months"
@@ -16,7 +9,7 @@
       >
         <input
           type="checkbox"
-          :checked="selection.indexOf(month) > -1"
+          :checked="value.indexOf(month) > -1"
           @change="handleMonthSelect($event, month)"
         />
         {{ month.label }}
@@ -29,7 +22,7 @@
 export default {
   data() {
     return {
-      selection: [],
+      value: [],
       months: [
         { label: 'January', short: 'Jan', value: 1 },
         { label: 'February', short: 'Feb', value: 2 },
@@ -50,13 +43,11 @@ export default {
   methods: {
     handleMonthSelect($event, month) {
       if ($event.target.checked) {
-        this.selection.push(month)
+        this.value.push(month)
       } else {
-        const index = this.selection.indexOf(month)(
-          selection => selection === month
-        )
+        const index = this.value.indexOf(month)(value => value === month)
         if (index > -1) {
-          this.selection.splice(index, 1)
+          this.value.splice(index, 1)
         }
       }
     }

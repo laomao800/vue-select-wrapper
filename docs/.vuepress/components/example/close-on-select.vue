@@ -1,26 +1,14 @@
 <template>
   <select-wrapper
-    v-model="selection"
+    v-model="value"
     :close-on-select="false"
     placeholder="Select single value"
     style="width:320px;"
   >
-    <div style="padding:15px">
-      <label style="margin-right:10px">
-        <input v-model="selection" name="single" type="radio" value="value1" />
-        value1
-      </label>
-      <label style="margin-right:10px">
-        <input v-model="selection" name="single" type="radio" value="value2" />
-        value2
-      </label>
-      <label style="margin-right:10px">
-        <input v-model="selection" name="single" type="radio" value="value3" />
-        value3
-      </label>
-      <label style="margin-right:10px">
-        <input v-model="selection" name="single" type="radio" value="value4" />
-        value4
+    <div class="option-wrap">
+      <label v-for="option in options" :key="option">
+        <input v-model="value" name="single" type="radio" :value="option" />
+        {{ option }}
       </label>
     </div>
   </select-wrapper>
@@ -30,8 +18,20 @@
 export default {
   data() {
     return {
-      selection: ''
+      value: '',
+      options: ['value1', 'value2', 'value3', 'value4', 'value5']
     }
   }
 }
 </script>
+
+<style scoped>
+.option-wrap {
+  padding: 10px;
+}
+.option-wrap label {
+  display: inline-block;
+  line-height: 1.6em;
+  width: 32%;
+}
+</style>

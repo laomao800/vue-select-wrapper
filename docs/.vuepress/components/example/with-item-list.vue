@@ -1,19 +1,13 @@
 <template>
   <select-wrapper
-    v-model="selection"
+    v-model="value"
     :multiple="true"
     placeholder="Select Items"
     style="width:320px;"
     @visible-change="onVisibleChange"
   >
-    <template slot="value-template" slot-scope="{ value }">
-      {{ value.label }}
-    </template>
-    <ItemListSelector
-      ref="itemListSelector"
-      v-model="selection"
-      :data="listData"
-    />
+    <template #value-template="{ value }">{{ value.label }}</template>
+    <item-list-selector ref="itemListSelector" v-model="value" :options-data="optionsData" />
   </select-wrapper>
 </template>
 
@@ -25,14 +19,10 @@ function _randomText(length = 20) {
 }
 
 export default {
-  components: {
-    ItemListSelector: () => import('@laomao800/vue-item-list-selector')
-  },
-
   data() {
     return {
-      selection: [],
-      listData: Array(6000)
+      value: [],
+      optionsData: Array(6000)
         .fill()
         .map((v, i) => ({
           label: `${i} - ${_randomText(6)}`,

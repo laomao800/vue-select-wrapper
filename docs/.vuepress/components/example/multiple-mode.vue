@@ -1,36 +1,22 @@
 <template>
   <div class="inline-wrap">
-    <select-wrapper
-      v-model="selection1"
-      :multiple="true"
-      placeholder="Select multiple value"
-    >
+    <select-wrapper v-model="value1" :multiple="true" placeholder="Select multiple value">
       <div class="option-wrap">
         <label v-for="option in options" :key="option">
-          <input
-            v-model="selection1"
-            name="multiple"
-            type="checkbox"
-            :value="option"
-          />
+          <input v-model="value1" name="multiple" type="checkbox" :value="option" />
           {{ option }}
         </label>
       </div>
     </select-wrapper>
     <select-wrapper
-      v-model="selection2"
+      v-model="value2"
       :multiple="true"
       :limit="2"
       placeholder="Select multiple value"
     >
       <div class="option-wrap">
         <label v-for="option in options" :key="option">
-          <input
-            v-model="selection2"
-            name="multiple"
-            type="checkbox"
-            :value="option"
-          />
+          <input v-model="value2" name="multiple" type="checkbox" :value="option" />
           {{ option }}
         </label>
       </div>
@@ -42,15 +28,9 @@
 export default {
   data() {
     return {
-      selection1: [],
-      selection2: [],
-      options: [
-        'value1',
-        'value2',
-        'value3',
-        'value4',
-        'value5',
-      ]
+      value1: [],
+      value2: [],
+      options: ['value1', 'value2', 'value3', 'value4', 'value5']
     }
   }
 }

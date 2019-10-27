@@ -4,7 +4,7 @@ export default ({ Vue }) => {
       const SelectWrapper = module.default
       Vue.use(SelectWrapper)
     })
-    .catch(e => {})
+    .catch(e => { })
 
   import('@laomao800/vue-demo-box')
     .then(module => {
@@ -16,5 +16,12 @@ export default ({ Vue }) => {
         ]
       })
     })
-    .catch(e => {})
+    .catch(e => { })
+
+  import('@laomao800/vue-item-list-selector')
+    .then(module => {
+      const ItemListSelector = module.default
+      Vue.use(ItemListSelector)
+    })
+    .catch(e => { })
 }
