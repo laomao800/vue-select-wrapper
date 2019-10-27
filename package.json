@@ -23,7 +23,7 @@
     "has-values": "^2.0.1"
   },
   "devDependencies": {
-    "@laomao800/vue-demo-box": "^1.1.6",
+    "@laomao800/vue-demo-box": "^1.1.7",
     "@laomao800/vue-item-list-selector": "^2.0.1",
     "@vue/cli-plugin-babel": "^4.0.5",
     "@vue/cli-plugin-eslint": "^4.0.5",
