@@ -90,7 +90,7 @@ export default {
 
   model: {
     prop: 'value',
-    event: 'value-change'
+    event: 'change'
   },
 
   props: {
@@ -208,9 +208,8 @@ export default {
       // eslint-disable-next-line no-console
       console.error(
         '[SelectWrapper error] Expected array with v-model/value in multiple mode, got ' +
-          typeof this.value +
-          ' with value ' +
-          this.value.toString()
+          `${typeof this.value} with value`,
+        this.value
       )
     }
   },
@@ -260,13 +259,13 @@ export default {
           this.value.slice(0, index),
           this.value.slice(index + 1, this.value.length)
         )
-        this.$emit('value-change', newValue)
+        this.$emit('change', newValue)
       }
     },
 
     clearValue() {
       this.hideDropdown()
-      this.$emit('value-change', this.multiple ? [] : undefined)
+      this.$emit('change', this.multiple ? [] : undefined)
       this.$emit('clear')
     },
 
