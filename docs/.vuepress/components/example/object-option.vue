@@ -1,6 +1,13 @@
 <template>
-  <select-wrapper v-model="value" :multiple="true" placeholder="Select months" style="width:540px;">
-    <template slot="value-template" slot-scope="{ value }">{{ value.short }}</template>
+  <select-wrapper
+    v-model="value"
+    :multiple="true"
+    placeholder="Select months"
+    style="width:540px;"
+  >
+    <template slot="value-template" slot-scope="{ value }">
+      {{ value.short }}
+    </template>
     <div style="padding:15px 0 15px 15px;">
       <label
         v-for="month in months"
@@ -45,7 +52,7 @@ export default {
       if ($event.target.checked) {
         this.value.push(month)
       } else {
-        const index = this.value.indexOf(month)(value => value === month)
+        const index = this.value.indexOf(month)
         if (index > -1) {
           this.value.splice(index, 1)
         }
