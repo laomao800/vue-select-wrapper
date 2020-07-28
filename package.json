@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "@laomao800/parse-size-with-unit": "^1.0.0",
+    "@popperjs/core": "^2.4.4",
     "has-values": "^2.0.1"
   },
   "devDependencies": {

@@ -5,6 +5,7 @@ import buble from 'rollup-plugin-buble'
 import { uglify } from 'rollup-plugin-uglify'
 import less from 'rollup-plugin-less'
 import autoprefixer from 'autoprefixer'
+import pkg from './package.json'
 
 const version = process.env.VERSION || require('./package.json').version
 const banner =
@@ -35,18 +36,16 @@ const commonConfig = {
 export default [
   {
     ...commonConfig,
+    external: [
+      ...Object.keys(pkg.dependencies),
+      '@popperjs/core/lib/popper-lite',
+      '@popperjs/core/lib/modifiers/flip',
+      '@popperjs/core/lib/modifiers/preventOverflow',
+      '@popperjs/core/lib/modifiers/offset',
+    ],
     output: {
       format: 'cjs',
       file: 'dist/vue-select-wrapper.common.js',
-      banner
-    }
-  },
-  {
-    ...commonConfig,
-    output: {
-      format: 'umd',
-      file: 'dist/vue-select-wrapper.umd.js',
-      name: 'vue-select-wrapper',
       banner
     }
   },

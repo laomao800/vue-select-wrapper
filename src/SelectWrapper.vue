@@ -9,7 +9,7 @@
     v-click-outside="hideDropdown"
   >
     <div ref="trigger" class="sw__trigger" @click="toggleDropdown">
-      <div ref="trigger" class="sw__selection">
+      <div class="sw__selection">
         <div v-if="isEmptyValue" class="sw__placeholder">{{ placeholder }}</div>
         <template v-else>
           <div v-if="multiple" class="sw__multiple">
@@ -58,8 +58,8 @@
       <div
         ref="popupContainer"
         v-show="visible"
-        :style="popupComputedStyle"
         :class="['sw__dropdown', popperClass]"
+        :style="popupComputedStyle"
         @click.stop
       >
         <div v-if="loading" class="sw__loading">{{ loadingText }}</div>
@@ -74,10 +74,27 @@
 <script>
 import hasValue from 'has-values'
 import parseSize from '@laomao800/parse-size-with-unit'
+import {
+  popperGenerator,
+  defaultModifiers
+} from '@popperjs/core/lib/popper-lite'
+import flip from '@popperjs/core/lib/modifiers/flip'
+import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow'
+import offset from '@popperjs/core/lib/modifiers/offset'
 import clickOutside from './clickOutSide'
-import getScrollParents from './getScrollParents'
 
-const isEmpty = val => !hasValue(val)
+const createPopper = popperGenerator({
+  defaultModifiers: [
+    ...defaultModifiers,
+    flip,
+    preventOverflow,
+    offset,
+    {
+      name: 'offset',
+      options: { offset: [0, 5] }
+    }
+  ]
+})
 
 export default {
   name: 'SelectWrapper',
@@ -95,80 +112,38 @@ export default {
 
   props: {
     value: {},
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    dropdownWidth: {
-      type: [Number, String]
-    },
-    dropdownZIndex: {
-      type: Number,
-      default: 1000
-    },
-    appendToBody: {
-      type: Boolean,
-      default: true
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String,
-      default: ''
-    },
-    clearable: {
-      type: Boolean,
-      default: false
-    },
-    limit: {
-      type: Number,
-      default: Infinity
-    },
-    limitText: {
-      type: Function,
-      default: count => `+${count}`
-    },
-    popperClass: {
-      type: String,
-      default: ''
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    loadingText: {
-      type: String,
-      default: 'Loading...'
-    },
+    multiple: { type: Boolean, default: false },
+    placeholder: { type: String, default: '' },
+    dropdownWidth: { type: [Number, String] },
+    dropdownZIndex: { type: Number, default: 1000 },
+    appendToBody: { type: Boolean, default: true },
+    disabled: { type: Boolean, default: false },
+    size: { type: String, default: '' },
+    clearable: { type: Boolean, default: false },
+    limit: { type: Number, default: Infinity },
+    limitText: { type: Function, default: count => `+${count}` },
+    popperClass: { type: String, default: '' },
+    loading: { type: Boolean, default: false },
+    loadingText: { type: String, default: 'Loading...' },
     closeOnSelect: {}
   },
 
   data() {
     return {
       visible: false,
-      popupStyle: {},
-      scrollParents: []
+      popperWidth: null
     }
   },
 
   computed: {
     isEmptyValue() {
-      return isEmpty(this.value)
+      return !hasValue(this.value)
     },
     popupComputedStyle() {
-      return Object.assign(
-        {
-          width: parseSize(this.dropdownWidth),
-          zIndex: this.dropdownZIndex + 2
-        },
-        this.popupStyle
-      )
+      return {
+        width: this.popperWidth,
+        zIndex: this.dropdownZIndex
+      }
     },
     showingValue() {
       if (this.limit > 0) {
@@ -192,14 +167,9 @@ export default {
     },
     value(val) {
       this.$emit('change', val)
-      this.$nextTick().then(() => {
-        if (this.appendToBody) {
-          this.updatePopper()
-        }
-        if (this.internalCloseOnSelect) {
-          this.hideDropdown()
-        }
-      })
+      if (this.internalCloseOnSelect) {
+        this.$nextTick(() => this.hideDropdown())
+      }
     }
   },
 
@@ -215,40 +185,15 @@ export default {
   },
 
   mounted() {
+    let popperWidth = parseSize(this.dropdownWidth)
+    if (!popperWidth) {
+      const triggerBounding = this.$refs.trigger.getBoundingClientRect()
+      popperWidth = parseSize(triggerBounding.width)
+    }
+    this.popperWidth = popperWidth
+
     if (this.appendToBody) {
       document.body.appendChild(this.$refs.popupContainer)
-
-      this.$nextTick().then(() => {
-        // All scrollable parents needs to trigger updatePopper() to update the dropdown position
-        const loopGetScrollParent = parentEle => {
-          let parent = parentEle
-          if (
-            parentEle === window.document.body ||
-            parentEle === window.document.documentElement
-          ) {
-            parent = window
-          } else {
-            loopGetScrollParent(getScrollParents(parent))
-          }
-          this.scrollParents.push(parent)
-        }
-        loopGetScrollParent(getScrollParents(this.$refs.trigger))
-        this.scrollParents.forEach(element => {
-          element.addEventListener('scroll', this.updatePopper)
-        })
-        window.addEventListener('resize', this.updatePopper)
-      })
-    }
-  },
-
-  beforeDestroy() {
-    this.scrollParents.forEach(element => {
-      element.removeEventListener('scroll', this.updatePopper)
-    })
-    if (this.appendToBody) {
-      const popup = this.$refs.popupContainer
-      popup.parentElement.removeChild(popup)
-      window.removeEventListener('resize', this.updatePopper)
     }
   },
 
@@ -273,9 +218,13 @@ export default {
       if (!this.visible) {
         this.visible = true
         this.$emit('visible-change', this.visible)
-        if (this.appendToBody) {
-          this.updatePopper()
-        }
+
+        this.$nextTick(() => {
+          this.popperIns = createPopper(
+            this.$refs.trigger,
+            this.$refs.popupContainer
+          )
+        })
       }
     },
 
@@ -283,32 +232,20 @@ export default {
       if (this.visible) {
         this.visible = false
         this.$emit('visible-change', this.visible)
+        // this.$nextTick will cause popper closing with some visual 'flashing' here
+        setTimeout(() => {
+          this.popperIns && this.popperIns.destroy()
+        })
       }
     },
 
     toggleDropdown() {
       if (this.disabled) return
-      const newStatus = !this.visible
-      newStatus ? this.showDropdown() : this.hideDropdown()
-    },
-
-    getPopupStyle() {
-      const triggerBounding = this.$refs.trigger.getBoundingClientRect()
-      const offsetLeft = triggerBounding.left + window.scrollX
-      const offsetTop = triggerBounding.bottom + window.scrollY
-      return {
-        left: `${offsetLeft}px`,
-        top: `${offsetTop}px`,
-        width: this.dropdownWidth
-          ? `${this.dropdownWidth}px`
-          : `${triggerBounding.width}px`
-      }
+      this.visible ? this.hideDropdown() : this.showDropdown()
     },
 
     updatePopper() {
-      if (this.visible) {
-        this.popupStyle = this.getPopupStyle()
-      }
+      this.popperIns && this.popperIns.update()
     }
   }
 }
