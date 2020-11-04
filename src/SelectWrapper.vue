@@ -54,18 +54,16 @@
         </span>
       </div>
     </div>
-    <transition name="sw__dropdown-trans">
-      <div
-        ref="popupContainer"
-        v-show="visible"
-        :class="['sw__dropdown', popperClass]"
-        :style="popupComputedStyle"
-        @click.stop
-      >
-        <div v-if="loading" class="sw__loading">{{ loadingText }}</div>
-        <div v-show="!loading"><slot /></div>
-      </div>
-    </transition>
+    <div
+      ref="popupContainer"
+      v-show="visible"
+      :class="['sw__dropdown', popperClass]"
+      :style="popupComputedStyle"
+      @click.stop
+    >
+      <div v-if="loading" class="sw__loading">{{ loadingText }}</div>
+      <div v-show="!loading"><slot /></div>
+    </div>
   </div>
 </template>
 
@@ -159,11 +157,8 @@ export default {
   },
 
   watch: {
-    visible: {
-      immediate: true,
-      handler(val) {
-        this.visible = val
-      }
+    visible(val) {
+      this.$emit('visible-change', val)
     },
     value(val) {
       this.$emit('change', val)
@@ -191,10 +186,11 @@ export default {
       popperWidth = parseSize(triggerBounding.width)
     }
     this.popperWidth = popperWidth
+    this._appendPopper()
+  },
 
-    if (this.appendToBody) {
-      document.body.appendChild(this.$refs.popupContainer)
-    }
+  beforeDestroy() {
+    this._removePopper()
   },
 
   methods: {
@@ -215,28 +211,21 @@ export default {
     },
 
     showDropdown() {
-      if (!this.visible) {
-        this.visible = true
-        this.$emit('visible-change', this.visible)
-
-        this.$nextTick(() => {
-          this.popperIns = createPopper(
-            this.$refs.trigger,
-            this.$refs.popupContainer
-          )
-        })
-      }
+      this.visible = true
+      this.$nextTick(() => {
+        this.popperIns = createPopper(
+          this.$refs.trigger,
+          this.$refs.popupContainer
+        )
+      })
     },
 
     hideDropdown() {
-      if (this.visible) {
-        this.visible = false
-        this.$emit('visible-change', this.visible)
-        // this.$nextTick will cause popper closing with some visual 'flashing' here
-        setTimeout(() => {
-          this.popperIns && this.popperIns.destroy()
-        })
-      }
+      this.visible = false
+      // this.$nextTick will cause popper closing with some visual 'flashing' here
+      setTimeout(() => {
+        this.popperIns && this.popperIns.destroy()
+      })
     },
 
     toggleDropdown() {
@@ -246,6 +235,20 @@ export default {
 
     updatePopper() {
       this.popperIns && this.popperIns.update()
+    },
+
+    _appendPopper() {
+      if (this.appendToBody) {
+        this.$refs.popupContainer &&
+          document.body.appendChild(this.$refs.popupContainer)
+      }
+    },
+
+    _removePopper() {
+      if (this.appendToBody) {
+        this.$refs.popupContainer &&
+          document.body.removeChild(this.$refs.popupContainer)
+      }
     }
   }
 }
